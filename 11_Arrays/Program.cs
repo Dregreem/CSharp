@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,8 +12,8 @@ namespace _11_Arrays
         static void Main(string[] args)
         {
             // 5 kişilik bir ailedeki üyeleri isimleri
-           
-                //* Değişken bir data tutabilir.
+
+            //* Değişken bir data tutabilir.
             //string isim1 = "Altan";
             //string isim2 = "Ceylan";
             //string isim3 = "Uras";
@@ -189,19 +190,19 @@ namespace _11_Arrays
             #region INDEX OF()
             //IndexOf:Verilen dizideki istenilen elemanın ilk görüldüğü indexi
 
-            int[] sayilar = { 11, 22, 11, 33, 44, 11, 55, 66, 11, 77 };
+            //int[] sayilar = { 11, 22, 11, 33, 44, 11, 55, 66, 11, 77 };
 
-            Console.WriteLine(Array.IndexOf(sayilar, 11));
+            //Console.WriteLine(Array.IndexOf(sayilar, 11));
 
-            int indexNo = Array.IndexOf(sayilar, 11);
+            //int indexNo = Array.IndexOf(sayilar, 11);
 
-            int secondIndex = Array.IndexOf(sayilar, 11, 1);
+            //int secondIndex = Array.IndexOf(sayilar, 11, 1);
 
-            Console.WriteLine(indexNo);
-            Console.WriteLine(secondIndex);
+            //Console.WriteLine(indexNo);
+            //Console.WriteLine(secondIndex);
 
 
-            Console.WriteLine(Array.IndexOf(sayilar, 44, 0, 4));
+            //Console.WriteLine(Array.IndexOf(sayilar, 44, 0, 4));
 
             #endregion
 
@@ -261,6 +262,152 @@ namespace _11_Arrays
             #endregion
 
 
+            #region Ödev1
+            //for (int i = 1; i < 6; i++) 
+            //{ 
+            //    for (int j = 0; j < i; j++)
+            //    {
+            //        Console.Write("*");
+            //    }
+            //    Console.WriteLine();
+            //}
+            #endregion
+
+            #region Ödev2
+
+            //for (int i = 1; i < 6; i++)
+            //{
+            //    for (int j = 6; j > i; j--)
+            //    {
+            //        Console.Write("*");
+            //    }
+            //    Console.WriteLine();
+            //}
+
+
+            #endregion
+
+            #region  Ödev3
+
+            //int spacenum = 5;
+
+            //for (int i = 1; i < 10; i+=2)
+            //{
+            //    for (int j = 0; j < spacenum; j++)
+            //    {
+            //        Console.Write(" ");
+            //    }
+            //    for (int j = 0; j < i; j++)
+            //    {
+            //        Console.Write("*");
+            //    }
+            //    Console.WriteLine();
+            //    spacenum--;
+            //}
+
+            #endregion
+
+            #region Ödev4
+
+            //string name = "Kerem";
+
+            //string[] alphabeticCharacters = name
+            //    .Where(char.IsLetter).Select(char.ToUpper)
+            //    .Select(c => c.ToString()).ToArray();
+
+            //foreach (string item in alphabeticCharacters)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+
+
+            #endregion
+
+            #region Ödev5 
+
+            //Console.WriteLine("Please enter the item number");
+            //int itemnumber = Convert.ToInt32(Console.ReadLine());
+
+            //string[] names=new string[itemnumber];
+            //int[] prices = new int[itemnumber];
+
+
+            //for (int i = 0; i < itemnumber; i++)
+            //{
+            //    Console.WriteLine("Please enter the name of the item "+ (i + 1));
+            //    names[i] = Console.ReadLine();
+            //    Console.WriteLine("Please enter the price of the item " + (i +1));
+            //    prices[i]=Convert.ToInt32(Console.ReadLine());  
+            //}
+
+            //for (int i = 0; i < itemnumber; i++)
+            //{
+            //    Console.WriteLine("The name of the item "+ (i + 1) + " is : " + names[i]+
+            //        "\nThe price of the item "+ (i + 1) + " is : " + prices[i]);
+            //}
+
+            #endregion
+
+            #region Ödev6
+            //string[] isimler = { "Ali", "Veli", "Ali", "Ahmet", "Mehmet", "Ali", "Zehra",
+            //"Fatma", "Ayşe", "Ali","Ahmet", "Mehmet","Mehmet", "Ali", "Zehra",
+            //"Fatma", "Ayşe", "Ali","Ahmet", "Mehmet"};
+
+            //int initialindexno = 0;
+            //int finalindexno = 0;
+            //string[] uniquenames=new string[isimler.Length];    
+
+            //for (int i = 0; i < isimler.Length; i++)
+            //{
+            //    initialindexno = Array.IndexOf(isimler, isimler[i]);
+
+            //    finalindexno = Array.LastIndexOf(isimler, isimler[i]);
+
+            //    if (finalindexno > initialindexno)
+            //    {
+            //       uniquenames[i]= isimler[i] ;
+            //    }
+
+            //}
+            //uniquenames=uniquenames.Distinct().ToArray();
+
+            //foreach (string item in uniquenames)
+            //{
+            //    if (item!=" "&&item!=null)
+            //    {
+            //        Console.WriteLine(item);
+
+            //    }
+            //}    
+
+
+
+
+
+
+
+            #endregion
+
+            #region örnek3
+            Random random = new Random();
+            int num = 0;
+            int randomNumber1 = random.Next(10,20);
+            
+            int[] numbers=new int[randomNumber1];
+
+            for (int i=0; i<numbers.Length; i++) 
+            { 
+                numbers[i] = random.Next(0,1000); 
+            }
+            
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                Console.WriteLine(numbers[i]);
+            }
+
+
+            #endregion
 
             Console.ReadLine();
 

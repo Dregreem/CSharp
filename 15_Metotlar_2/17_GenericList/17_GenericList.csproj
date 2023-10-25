@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A9788979-5DDD-45E1-993B-47D24A4B23BF}</ProjectGuid>
+    <ProjectGuid>{E20C4C5B-A48F-4888-A964-F40CCD434B3C}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_15_Metotlar</RootNamespace>
-    <AssemblyName>15_Metotlar</AssemblyName>
+    <RootNamespace>_17_GenericList</RootNamespace>
+    <AssemblyName>17_GenericList</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Matematik.cs" />
+    <Compile Include="Ogrenci.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

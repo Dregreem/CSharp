@@ -112,6 +112,8 @@ namespace _14_deneme2
                             Console.Clear();
                         }
                     }
+                    Console.Clear();
+
                 }
                 else if (cho1 == "2")
                 {

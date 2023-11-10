@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace _18_OOP_6_Polymorphism_3
@@ -62,8 +63,9 @@ namespace _18_OOP_6_Polymorphism_3
 
             CreditCard myCreditCard = new CreditCard(cardNumber, initialBalance);
 
-
-                            }
+            customer.sepet.Shoppingchoice(customer,myCreditCard,initialBalance);
+            
+        }
         class Urun
         {
             public int Id { get; set; }
@@ -144,10 +146,75 @@ namespace _18_OOP_6_Polymorphism_3
             {
                 urunler.Add(urun);
             }
+            public void Delete()
+            {
+               urunler.Clear();
+            }
+
+            public void Shoppingchoice(Customer custom, CreditCard card, double num)
+            {
+                while (true)
+                {
+                    Console.WriteLine("\n1. Make a purchase");
+                    Console.WriteLine("2. Make a payment");
+                    Console.WriteLine("3. Exit");
+                    Console.Write("Enter your choice: ");
+
+                    if (int.TryParse(Console.ReadLine(), out int choice))
+                    {
+                        double top = custom.sepet.ToplamTutar();
+                        Console.WriteLine("Sepet tutarınız: " + top);
+                        Console.WriteLine("Sahip olduğunuz bakiye: " + num);
+                        Thread.Sleep(3000);
+
+                        switch (choice)
+                        {
+                            case 1:
+                                if (custom.sepet.urunler.Count == 0)
+                                {
+                                    Console.WriteLine("Invalid input. Please add something to Sepet.");
+                                }
+                                else if (num < top)
+                                {
+                                    Console.WriteLine("Yetersiz Bakiye");
+                                }
+                                else
+                                {
+                                    card.MakePurchase(top,num);
+                                    
+                                    custom.sepet.Delete();
+                                    Console.WriteLine("Ürünler Silindi, Sepetiniz boşaltıldı");
+                                }
+                                break;
+
+                            case 2:
+                                Console.Write("Enter the payment amount: ");
+                                double paymentAmount;
+                                while (!double.TryParse(Console.ReadLine(), out paymentAmount) || paymentAmount < 0)
+                                {
+                                    Console.WriteLine("Invalid input. Please enter a valid payment amount.");
+                                }
+                                card.MakePayment(paymentAmount);
+                                num += paymentAmount; // Update the balance using the 'num' parameter
+                                break;
+
+                            case 3:
+                                Console.WriteLine("Exiting program. Goodbye!");
+                                return;
+                            default:
+                                Console.WriteLine("Invalid choice. Please try again.");
+                                break;
+                        }
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid choice. Please try again.");
+                    }
+                }
+            }
+
         }
-
-
-
         class CreditCard
         {
             private string cardNumber;
@@ -159,11 +226,12 @@ namespace _18_OOP_6_Polymorphism_3
                 this.balance = initialBalance;
             }
 
-            public void MakePurchase(double amount)
+            public void MakePurchase(double amount,double num)
             {
-                if (amount > 0 && amount <= balance)
+                num = this.balance;
+                if (amount > 0 && amount <= num)
                 {
-                    balance -= amount;
+                    num -= amount;
                     Console.WriteLine($"Purchase successful! Remaining balance: {balance:C}");
                 }
                 else

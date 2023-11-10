@@ -50,8 +50,6 @@ namespace _18_OOP_6_Polymorphism_3
             Console.WriteLine(customer.sepet.ToplamTutar());
             Console.ReadLine();
 
-
-
             Console.Write("Enter your credit card number: ");
             string cardNumber = Console.ReadLine();
 
@@ -65,58 +63,7 @@ namespace _18_OOP_6_Polymorphism_3
             CreditCard myCreditCard = new CreditCard(cardNumber, initialBalance);
 
 
-            while (true)
-            {
-                Console.WriteLine("\n1. Make a purchase");
-                Console.WriteLine("2. Make a payment");
-                Console.WriteLine("3. Check balance");
-                Console.WriteLine("4. Exit");
-                Console.Write("Enter your choice: ");
-
-                if (int.TryParse(Console.ReadLine(), out int choice))
-                {
-                    switch (choice)
-                    {
-                        case 1:
-                            // Make a purchase
-                            Console.Write("Enter the purchase amount: ");
-                            double purchaseAmount;
-                            while (!double.TryParse(Console.ReadLine(), out purchaseAmount) || purchaseAmount < 0)
-                            {
-                                Console.WriteLine("Invalid input. Please enter a valid purchase amount.");
                             }
-                            myCreditCard.MakePurchase(purchaseAmount);
-                            break;
-                        case 2:
-                            // Make a payment
-                            Console.Write("Enter the payment amount: ");
-                            double paymentAmount;
-                            while (!double.TryParse(Console.ReadLine(), out paymentAmount) || paymentAmount < 0)
-                            {
-                                Console.WriteLine("Invalid input. Please enter a valid payment amount.");
-                            }
-                            myCreditCard.MakePayment(paymentAmount);
-                            break;
-                        case 3:
-                            // Check balance
-                            myCreditCard.CheckBalance();
-                            break;
-                        case 4:
-                            // Exit program
-                            Console.WriteLine("Exiting program. Goodbye!");
-                            return;
-                        default:
-                            Console.WriteLine("Invalid choice. Please try again.");
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid choice. Please try again.");
-                }
-
-            }
-        }
         class Urun
         {
             public int Id { get; set; }
@@ -169,8 +116,6 @@ namespace _18_OOP_6_Polymorphism_3
             public int Ram { get; set; }
             public int EkranKartı { get; set; }
         }
-
-        //Id,AD,Soyad,TC,Adres
         class Customer
         {
             public int Id { get; set; }
@@ -181,7 +126,6 @@ namespace _18_OOP_6_Polymorphism_3
 
             public Sepet sepet { get; set; }
         }
-
         class Sepet
         {
             private List<Urun> urunler = new List<Urun>();

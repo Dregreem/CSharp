@@ -177,6 +177,7 @@ namespace _18_OOP_6_Polymorphism_3
                                 else if (num < top)
                                 {
                                     Console.WriteLine("Yetersiz Bakiye");
+                                    card.MakePurchase(top, num);
                                 }
                                 else
                                 {
@@ -205,6 +206,7 @@ namespace _18_OOP_6_Polymorphism_3
                                 Console.WriteLine("Invalid choice. Please try again.");
                                 break;
                         }
+                        Thread.Sleep(3000);
                         Console.Clear();
                     }
                     else
@@ -232,12 +234,89 @@ namespace _18_OOP_6_Polymorphism_3
                 if (amount > 0 && amount <= num)
                 {
                     num -= amount;
+                    balance = num;
                     Console.WriteLine($"Purchase successful! Remaining balance: {balance:C}");
                 }
                 else
                 {
                     Console.WriteLine("Invalid amount or insufficient balance.");
+                    Installements(amount);
                 }
+
+
+            }
+            public void Installements(double tutar)
+            {
+                Console.WriteLine("Would you like to make installements?");
+                Console.WriteLine("1- For 3-Month: 0.00 interest rate");
+                Console.WriteLine("2- For 6-Month: 0.20 interest rate");
+                Console.WriteLine("3- For 9-Month: 0.40 interest rate");
+                Console.WriteLine("4- For 12-Month: 0.60 interest rate");
+                Console.WriteLine("5- For Exit and installements");
+
+                int InterestMonth;
+                while (!int.TryParse(Console.ReadLine(), out InterestMonth) || InterestMonth < 0)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid annual interest rate.");
+                }
+                double interestrate;
+                
+                switch (InterestMonth)
+                {
+                    case 1:
+                        Console.WriteLine("Seçtiğiniz interest rate 0.10 , 3 ayda ödemek istediniz");
+                        interestrate = 0.10;
+                        InterestMonth = 3;
+
+                        Console.WriteLine("Aylık ödemeniz gereken tutar: " + CalculateMonthlyPayment(tutar,interestrate,InterestMonth));
+                        Console.WriteLine("Ödemeniz gereken süre : " + InterestMonth + "Ay");
+                        Thread.Sleep(3000);
+
+                        break;
+                    case 2:
+                        Console.WriteLine("Seçtiğiniz interest rate 0.20 , 6 ayda ödemek istediniz");
+                        interestrate = 0.20;
+                        InterestMonth = 6;
+
+                        Console.WriteLine("Aylık ödemeniz gereken tutar: " + CalculateMonthlyPayment(tutar, interestrate, InterestMonth));
+                        Console.WriteLine("Ödemeniz gereken süre : " + InterestMonth + "Ay");
+                        Thread.Sleep(3000);
+                        break;
+                    case 3:
+                        Console.WriteLine("Seçtiğiniz interest rate 0.40 , 9 ayda ödemek istediniz");
+                        interestrate = 0.40;
+                        InterestMonth = 9;
+
+                        Console.WriteLine("Aylık ödemeniz gereken tutar: " + CalculateMonthlyPayment(tutar, interestrate, InterestMonth));
+                        Console.WriteLine("Ödemeniz gereken süre : " + InterestMonth + "Ay");
+                        Thread.Sleep(3000);
+                        break;
+                    case 4:
+                        Console.WriteLine("Seçtiğiniz interest rate 0.40 , 9 ayda ödemek istediniz");
+                        interestrate = 0.60;
+                        InterestMonth = 12;
+
+                        Console.WriteLine("Aylık ödemeniz gereken tutar: " + CalculateMonthlyPayment(tutar, interestrate, InterestMonth));
+                        Console.WriteLine("Ödemeniz gereken süre : " + InterestMonth + "Ay");
+                        Thread.Sleep(3000);
+                        break;
+                    case 5:
+                        Console.WriteLine("Ödeme yapmak istemediniz sistemden çıkartılıyorsunuz");
+                        Thread.Sleep(3000);
+                        break;
+                    default:
+                        Console.WriteLine("Hatalı seçim yaptınız");
+                        break;
+
+
+                }
+
+            }
+            public double CalculateMonthlyPayment(double totalAmount, double interestRate, int numberOfInstallments)
+            {
+                double monthlyInterestRate = interestRate / 12;
+                double denominator = Math.Pow(1 + monthlyInterestRate, numberOfInstallments) - 1;
+                return totalAmount * (monthlyInterestRate + (monthlyInterestRate / denominator));
             }
 
             public void MakePayment(double amount)
